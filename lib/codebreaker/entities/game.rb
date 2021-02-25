@@ -17,5 +17,6 @@ module Codebreaker
 
     def generate_secret_code
       Array.new(SECRET_CODE_SIZE) { rand(SECRET_CODE_RANGE) }
-    end  end
+    end
+  end
 end
