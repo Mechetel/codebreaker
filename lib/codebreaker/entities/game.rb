@@ -1,39 +1,72 @@
 module Codebreaker
   class Game
     include Validator
+    attr_reader :user, :difficulty, :secret_code, :errors, :date, :hints_list
 
-    SECRET_CODE_SIZE = 4
-    SECRET_CODE_RANGE = (1..6).freeze
+    MIN_CODE_NUM = 1
+    MAX_CODE_NUM = 6
+    DIGITS_NUM = 4
 
-    attr_reader :secret_code, :hints, :hint_number, :attempts, :player, :result, :difficulty, :errors
-
-    def initialize(player, difficulty)
-      @player = player
+    def initialize(user, difficulty)
+      @user = user
       @difficulty = difficulty
-      @attempts = difficulty.attempts
-      @hints = difficulty.hints
+      @attempts = @difficulty.attempts
+      @hints = @difficulty.hints
       @secret_code = generate_secret_code
-      @hint_number = @secret_code.clone
+      @hints_list = secret_code.clone
       @errors = []
+      @date = Time.now.getlocal
+    end
+
+    def use_hint
+      @hints -= 1
+      index = rand(hints_list.size)
+      digit = hints_list[index]
+      hints_list.delete_at index
+      digit
+    end
+
+    def check_attempt(guess)
+      @attempts -= 1
+      GuessChecker.new(@secret_code.clone, guess).check
+    end
+
+    def new_game
+      @secret_code = generate_secret_code
+      @hints_list = @secret_code.clone
+      @attempts = @difficulty.attempts.clone
+      @hints = @difficulty.hints.clone
+    end
+
+    def lose?
+      difficulty.current_attempts.zero?
+    end
+
+    def win?(user_code)
+      user_code == secret_code.join
+    end
+
+    def no_hints?
+      difficulty.current_hints.zero?
     end
 
     private
 
     def generate_secret_code
-      Array.new(SECRET_CODE_SIZE) { rand(SECRET_CODE_RANGE) }
+      Array.new(DIGITS_NUM) { rand(MIN_CODE_NUM..MAX_CODE_NUM) }.join
     end
 
     def validate!
-      validate_player
+      validate_user
       validate_difficulty if errors.empty?
     end
 
-    def validate_player
-      errors << ExpectedPlayerInstanceError unless user.class == Codebreaker::Player
+    def validate_user
+      errors << ExpectedUserInstanceError unless user.instance_of?(Codebreaker::User)
     end
 
     def validate_difficulty
-      errors << ExpectedDifficultyInstanceError unless difficulty.class == Codebreaker::Difficulty
+      errors << ExpectedDifficultyInstanceError unless difficulty.instance_of?(Codebreaker::Difficulty)
     end
   end
 end

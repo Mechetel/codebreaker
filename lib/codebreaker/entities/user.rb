@@ -1,7 +1,7 @@
 module Codebreaker
-  class Player
+  class User
     include Validator
-    attr_reader :name,:errors
+    attr_reader :name, :errors
 
     NAME_MIN_LENGTH = 3
     NAME_MAX_LENGTH = 20
@@ -30,6 +30,5 @@ module Codebreaker
     def validate_name_max_length
       errors << LongNameError if name.length > NAME_MAX_LENGTH
     end
-
   end
 end
