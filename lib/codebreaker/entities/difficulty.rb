@@ -5,18 +5,18 @@ module Codebreaker
     DIFFICULTIES = { easy: { attempts: 15, hints: 2 },
                      medium: { attempts: 10, hints: 1 },
                      hell: { attempts: 5, hints: 1 } }.freeze
-    attr_reader :difficulty
+    attr_reader :level
 
-    def initialize(difficulty)
-      @difficulty = difficulty.to_sym
+    def initialize(level)
+      @level = level.to_sym
     end
 
     def attempts
-      DIFFICULTIES[@difficulty][:attempts]
+      DIFFICULTIES[@level][:attempts]
     end
 
     def hints
-      DIFFICULTIES[@difficulty][:hints]
+      DIFFICULTIES[@level][:hints]
     end
 
     private
@@ -26,7 +26,6 @@ module Codebreaker
     end
 
     def validate_difficulty
-      errors << DifficultyError unless DIFFICULTIES.include? kind
-    end
+      errors << DifficultyError unless DIFFICULTIES.include? @level
   end
 end
