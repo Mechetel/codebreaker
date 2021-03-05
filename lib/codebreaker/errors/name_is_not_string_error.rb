@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Codebreaker
   class NameIsNotStringError < StandardError
     def message
