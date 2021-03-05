@@ -27,5 +27,6 @@ module Codebreaker
 
     def validate_difficulty
       errors << DifficultyError unless DIFFICULTIES.include? @level
+    end
   end
 end
