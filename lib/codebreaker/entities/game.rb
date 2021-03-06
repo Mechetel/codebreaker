@@ -20,9 +20,9 @@ module Codebreaker
 
     def use_hint
       @hints -= 1
-      index = rand(hints_list.size)
+      index = rand(@hints_list.size)
       digit = hints_list[index]
-      hints_list.delete_at index
+      @hints_list.delete_at index
       digit
     end
 
@@ -39,15 +39,15 @@ module Codebreaker
     end
 
     def lose?
-      difficulty.attempts.zero?
+      @attempts.zero?
     end
 
     def win?(user_code)
-      user_code == secret_code.join
+      user_code == @secret_code.join
     end
 
     def no_hints?
-      difficulty.hints.zero?
+      @hints.zero?
     end
 
     private
@@ -58,15 +58,15 @@ module Codebreaker
 
     def validate!
       validate_user
-      validate_difficulty if errors.empty?
+      validate_difficulty if @errors.empty?
     end
 
     def validate_user
-      errors << ExpectedUserInstanceError unless user.instance_of?(Codebreaker::User)
+      @errors << ExpectedUserInstanceError unless @user.instance_of?(Codebreaker::User)
     end
 
     def validate_difficulty
-      errors << ExpectedDifficultyInstanceError unless difficulty.instance_of?(Codebreaker::Difficulty)
+      @errors << ExpectedDifficultyInstanceError unless @difficulty.instance_of?(Codebreaker::Difficulty)
     end
   end
 end

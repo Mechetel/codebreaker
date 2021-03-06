@@ -20,15 +20,15 @@ module Codebreaker
     end
 
     def validate_name_class
-      errors << NameIsNotStringError unless name.is_a? String
+      @errors << NameIsNotStringError unless @name.is_a? String
     end
 
     def validate_name_min_length
-      errors << ShortNameError if name.length < NAME_MIN_LENGTH
+      @errors << ShortNameError if @name.length < NAME_MIN_LENGTH
     end
 
     def validate_name_max_length
-      errors << LongNameError if name.length > NAME_MAX_LENGTH
+      @errors << LongNameError if @name.length > NAME_MAX_LENGTH
     end
   end
 end

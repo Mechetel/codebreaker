@@ -7,9 +7,9 @@ module Codebreaker
     end
 
     def store(game)
-      statistics = File.exist?(path) && !File.zero?(path) ? YAML.load_file(path) : []
+      statistics = File.exist?(@path) && !File.zero?(@path) ? YAML.load_file(@path) : []
       statistics << pack_game_data(game)
-      file = File.open(path, 'w')
+      file = File.open(@path, 'w')
       file.write(statistics.to_yaml)
       file.close
     end
@@ -19,9 +19,9 @@ module Codebreaker
     end
 
     def load
-      return unless File.exist? path
+      return unless File.exist? @path
 
-      YAML.load_file path
+      YAML.load_file @path
     end
 
     private
@@ -29,7 +29,7 @@ module Codebreaker
     def game_to_h(game)
       {
         name: game.user.name,
-        difficulty: game.difficulty.defficulty.to_s,
+        difficulty: game.difficulty.level.to_s,
         attempts_total: game.difficulty.attempts,
         attempts_used: game.difficulty.attempts - game.attempts,
         hints_total: game.hints,
