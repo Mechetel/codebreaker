@@ -43,7 +43,7 @@ module Codebreaker
     end
 
     def win?(user_code)
-      user_code == secret_code
+      user_code == secret_code.join
     end
 
     def no_hints?
@@ -53,7 +53,7 @@ module Codebreaker
     private
 
     def generate_secret_code
-      Array.new(DIGITS_NUM) { rand(MIN_CODE_NUM..MAX_CODE_NUM) }.join
+      Array.new(DIGITS_NUM) { rand(MIN_CODE_NUM..MAX_CODE_NUM) }
     end
 
     def validate!
