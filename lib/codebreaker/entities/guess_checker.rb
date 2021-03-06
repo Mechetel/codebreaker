@@ -9,9 +9,10 @@ module Codebreaker
       @user_input = input
     end
 
+
     def check
       answer = []
-      @user_input.each_char.each_with_index do |digit, index|
+      @user_input.split('').map(&:to_i).each_with_index do |digit, index|
         if @secret_code[index] == digit
           answer.push RIGHT_ANSWER_SYMBOL
         elsif @secret_code.include? digit
