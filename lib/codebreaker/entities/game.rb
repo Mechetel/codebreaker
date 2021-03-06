@@ -43,7 +43,7 @@ module Codebreaker
     end
 
     def win?(user_code)
-      user_code == secret_code.join
+      user_code == secret_code
     end
 
     def no_hints?
