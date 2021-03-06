@@ -39,7 +39,7 @@ module Codebreaker
     end
 
     def lose?
-      difficulty.current_attempts.zero?
+      difficulty.attempts.zero?
     end
 
     def win?(user_code)
