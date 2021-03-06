@@ -2,13 +2,13 @@ module Codebreaker
   class GuessChecker
     RIGHT_ANSWER_SYMBOL = '+'.freeze
     WRONG_ANSWER_SYMBOL = '-'.freeze
+
     attr_reader :secret_code, :user_code
 
     def initialize(code, input)
       @secret_code = code
       @user_input = input
     end
-
 
     def check
       answer = []

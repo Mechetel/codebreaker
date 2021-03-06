@@ -1,11 +1,12 @@
 module Codebreaker
   class Game
     include Validator
-    attr_reader :user, :difficulty, :secret_code, :errors, :date, :hints_list, :attempts, :hints
 
     MIN_CODE_NUM = 1
     MAX_CODE_NUM = 6
     DIGITS_NUM = 4
+
+    attr_reader :user, :difficulty, :secret_code, :errors, :date, :hints_list, :attempts, :hints
 
     def initialize(user, difficulty)
       @user = user
