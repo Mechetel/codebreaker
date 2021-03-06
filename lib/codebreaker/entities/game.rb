@@ -47,7 +47,7 @@ module Codebreaker
     end
 
     def no_hints?
-      difficulty.current_hints.zero?
+      difficulty.hints.zero?
     end
 
     private

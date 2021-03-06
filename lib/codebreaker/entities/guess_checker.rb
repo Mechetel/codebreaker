@@ -20,5 +20,10 @@ module Codebreaker
       end
       answer.sort.join
     end
+
+    def self.validate(guess)
+      raise DigitsCountError unless guess.size == Game::DIGITS_NUM
+      raise DigitRangeError unless guess.chars.all? { |num| num.to_i.between? Game::MIN_CODE_NUM, Game::MAX_CODE_NUM }
+    end
   end
 end
