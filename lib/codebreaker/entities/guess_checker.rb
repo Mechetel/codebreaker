@@ -2,7 +2,7 @@ module Codebreaker
   class GuessChecker
     RIGHT_ANSWER_SYMBOL = '+'.freeze
     WRONG_ANSWER_SYMBOL = '-'.freeze
-    NOTHING_SYMBOL      = '' .freeze
+    NOTHING_SYMBOL      = ''.freeze
 
     def initialize(code, input)
       @secret_code = code.to_s.split(NOTHING_SYMBOL).map(&:to_i)
@@ -26,7 +26,7 @@ module Codebreaker
       @user_input.map.with_index do |number, index|
         if @secret_code[index] == number
           answer << RIGHT_ANSWER_SYMBOL
-          @secret_code[index], @user_input[index]  = nil
+          @secret_code[index], @user_input[index] = nil
         end
       end
       answer

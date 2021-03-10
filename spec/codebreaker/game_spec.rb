@@ -60,8 +60,9 @@ RSpec.describe Codebreaker::Game do
   end
 
   describe '#take_hint' do
-    subject(:game_secret_number) { game.secret_code }
     subject(:game_use_hint) { game.use_hint }
+
+    let(:game_secret_number) { game.secret_code }
 
     it 'returns Integer' do
       expect(game_use_hint.class).to eq Integer
@@ -96,11 +97,11 @@ RSpec.describe Codebreaker::Game do
   describe '#win?' do
     it 'returns false when user code is not equal to secret code' do
       game.instance_variable_set(:@secret_code, [1, 2, 3, 4])
-      expect(game.win?('2345')).to be_falsey
+      expect(game).not_to be_win('2345')
     end
 
     it 'returns true when user code is equal to secret code' do
-      expect(game.win?(game.secret_code.join)).to be_truthy
+      expect(game).to be_win(game.secret_code.join)
     end
   end
 
@@ -147,6 +148,5 @@ RSpec.describe Codebreaker::Game do
     it 'returns string which size is between 0 and 4' do
       expect(game.check_attempt('6163').length).to be_between(0, 4).inclusive
     end
-
   end
 end

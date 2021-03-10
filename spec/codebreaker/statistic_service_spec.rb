@@ -1,11 +1,14 @@
 RSpec.describe Codebreaker::StatisticsService do
-  let(:game) { Codebreaker::Game.new Codebreaker::User.new('Mechetel'),
-                                     Codebreaker::Difficulty.new('hell') }
+  let(:game) do
+    Codebreaker::Game.new Codebreaker::User.new('Mechetel'),
+                          Codebreaker::Difficulty.new('hell')
+  end
   let(:path) { './lib/codebreaker/test.yaml' }
   let(:service) { described_class.new(path) }
 
   before { service.store game }
-  after(:each) { File.delete(path) }
+
+  after { File.delete(path) }
 
   describe '#store' do
     it 'create file' do

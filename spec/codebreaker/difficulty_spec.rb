@@ -5,9 +5,11 @@ RSpec.describe Codebreaker::Difficulty do
   let(:level) { 'easy' }
   let(:invalid_difficulty) { described_class.new invalid_level }
   let(:invalid_level) { 'qwerty' }
-  let(:difficulty_constant) { { easy: { attempts: 15, hints: 2 },
-                                medium: { attempts: 10, hints: 1 },
-                                hell: { attempts: 5, hints: 1 } } }
+  let(:difficulty_constant) do
+    { easy: { attempts: 15, hints: 2 },
+      medium: { attempts: 10, hints: 1 },
+      hell: { attempts: 5, hints: 1 } }
+  end
 
   describe '#level' do
     context 'when level set' do
