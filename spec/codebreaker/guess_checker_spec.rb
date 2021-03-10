@@ -6,9 +6,7 @@ RSpec.describe Codebreaker::GuessChecker do
   let(:nothing_symbol) { '' }
 
   describe '#initialize' do
-    let(:guess_checker) { described_class.new(secret_code, user_input) }
-    let(:secret_code) { '1234' }
-    let(:user_input) { '2345' }
+    let(:guess_checker) { described_class.new('1234', '2345') }
 
     it 'has secret_code and user_input field' do
       expect(guess_checker.instance_variables).to include(:@secret_code, :@user_input)

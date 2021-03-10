@@ -3,12 +3,6 @@ require 'spec_helper'
 RSpec.describe Codebreaker::User do
   let(:user) { described_class.new name }
   let(:name) { 'Mechetel' }
-  let(:short_name_user) { described_class.new short_name }
-  let(:short_name) { 'Me' }
-  let(:long_name_user) { described_class.new long_name }
-  let(:long_name) { 'dima' * 10 }
-  let(:invalid_user) { described_class.new inappropriate_user_name }
-  let(:inappropriate_user_name) { 322 }
 
   describe '#name' do
     context 'when name set' do
@@ -44,6 +38,9 @@ RSpec.describe Codebreaker::User do
 
   describe '#valid?' do
     context 'when entered name is too short' do
+      let(:short_name_user) { described_class.new short_name }
+      let(:short_name) { 'Me' }
+
       it 'returns false' do
         expect(short_name_user).not_to be_valid
       end
@@ -55,6 +52,9 @@ RSpec.describe Codebreaker::User do
     end
 
     context 'when entered name is too long' do
+      let(:long_name_user) { described_class.new long_name }
+      let(:long_name) { 'dima' * 10 }
+
       it 'returns false' do
         expect(long_name_user).not_to be_valid
       end
@@ -66,6 +66,9 @@ RSpec.describe Codebreaker::User do
     end
 
     context 'when entered name is not an instance of String' do
+      let(:invalid_user) { described_class.new inappropriate_user_name }
+      let(:inappropriate_user_name) { 322 }
+
       it 'returns false' do
         expect(invalid_user).not_to be_valid
       end

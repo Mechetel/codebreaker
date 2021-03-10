@@ -1,14 +1,11 @@
 require 'spec_helper'
 
 RSpec.describe Codebreaker::Game do
-  let(:range) { (described_class::MIN_CODE_NUM..described_class::MAX_CODE_NUM - 1).to_a }
   let(:user) { Codebreaker::User.new user_name }
   let(:user_name) { 'Mechetel' }
   let(:difficulty) { Codebreaker::Difficulty.new difficulty_level }
   let(:difficulty_level) { 'hell' }
   let(:game) { described_class.new user, difficulty }
-  let(:attempts_at_new_game) { game.difficulty.attempts }
-  let(:hints_at_new_game) { game.difficulty.hints }
 
   describe '#initialize' do
     context 'when game starts it initializes with secret number' do
@@ -48,21 +45,19 @@ RSpec.describe Codebreaker::Game do
       it 'hints list is equal to secret code' do
         expect(game.hints_list).to eq game_secret_number
       end
-
-      it 'user field class equal to User' do
-        expect(game.user.class).to eq Codebreaker::User
-      end
-
-      it 'difficulty field class equal to Difficulty' do
-        expect(game.difficulty.class).to eq Codebreaker::Difficulty
-      end
     end
+  end
+
+  it 'user field class equal to User' do
+    expect(game.user.class).to eq Codebreaker::User
+  end
+
+  it 'difficulty field class equal to Difficulty' do
+    expect(game.difficulty.class).to eq Codebreaker::Difficulty
   end
 
   describe '#take_hint' do
     subject(:game_use_hint) { game.use_hint }
-
-    let(:game_secret_number) { game.secret_code }
 
     it 'returns Integer' do
       expect(game_use_hint.class).to eq Integer
@@ -119,6 +114,10 @@ RSpec.describe Codebreaker::Game do
   end
 
   describe '#new_game' do
+    subject(:hints_at_new_game) { game.difficulty.hints }
+
+    let(:attempts_at_new_game) { game.difficulty.attempts }
+
     before do
       game.new_game
     end

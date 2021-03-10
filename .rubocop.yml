@@ -20,6 +20,10 @@ Lint/AmbiguousBlockAssociation:
   Exclude:
     - 'spec/codebreaker/**/*'
 
+RSpec/AnyInstance:
+  Exclude:
+    - 'spec/codebreaker/**/*'
+
 Style/FrozenStringLiteralComment:
   Enabled: false
 
