@@ -16,8 +16,8 @@ module Codebreaker
 
     def validate!
       validate_name_class
-      validate_name_min_length if errors.empty?
-      validate_name_max_length if errors.empty?
+      validate_name_min_length if @errors.empty?
+      validate_name_max_length if @errors.empty?
     end
 
     def validate_name_class
