@@ -8,7 +8,7 @@ module Codebreaker
 
     def store(game)
       statistics = File.exist?(@path) && !File.zero?(@path) ? YAML.load_file(@path) : []
-      statistics << pack_game_data(game)
+      statistics << game_to_h(game)
       file = File.open(@path, 'w')
       file.write(statistics.to_yaml)
       file.close
