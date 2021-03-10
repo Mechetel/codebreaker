@@ -1,7 +1,5 @@
 module Codebreaker
   class Game
-    include Validator
-
     MIN_CODE_NUM = 1
     MAX_CODE_NUM = 6
     DIGITS_NUM = 4
@@ -15,7 +13,6 @@ module Codebreaker
       @hints = @difficulty.hints
       @secret_code = generate_secret_code
       @hints_list = secret_code.clone
-      @errors = []
       @date = Time.now.getlocal
     end
 
@@ -29,7 +26,7 @@ module Codebreaker
 
     def check_attempt(guess)
       @attempts -= 1
-      GuessChecker.new(@secret_code.clone, guess).check
+      GuessChecker.new(@secret_code.join, guess).check
     end
 
     def new_game
@@ -55,19 +52,6 @@ module Codebreaker
 
     def generate_secret_code
       Array.new(DIGITS_NUM) { rand(MIN_CODE_NUM..MAX_CODE_NUM) }
-    end
-
-    def validate!
-      validate_user
-      validate_difficulty if @errors.empty?
-    end
-
-    def validate_user
-      @errors << ExpectedUserInstanceError unless @user.instance_of?(Codebreaker::User)
-    end
-
-    def validate_difficulty
-      @errors << ExpectedDifficultyInstanceError unless @difficulty.instance_of?(Codebreaker::Difficulty)
     end
   end
 end
