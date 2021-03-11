@@ -3,13 +3,7 @@ require_relative 'codebreaker/version'
 require 'yaml'
 require 'pry'
 
-require_relative 'codebreaker/errors/guess_is_not_integer_error'
-require_relative 'codebreaker/errors/name_is_not_string_error'
-require_relative 'codebreaker/errors/short_name_error'
-require_relative 'codebreaker/errors/long_name_error'
-require_relative 'codebreaker/errors/difficulty_error'
-require_relative 'codebreaker/errors/digit_range_error'
-require_relative 'codebreaker/errors/digits_count_error'
+require_relative 'codebreaker/errors/validation_error'
 
 require_relative 'codebreaker/modules/validator'
 

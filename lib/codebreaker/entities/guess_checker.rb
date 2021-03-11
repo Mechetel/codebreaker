@@ -1,8 +1,11 @@
 module Codebreaker
   class GuessChecker
-    RIGHT_ANSWER_SYMBOL = '+'.freeze
-    WRONG_ANSWER_SYMBOL = '-'.freeze
-    NOTHING_SYMBOL      = ''.freeze
+    RIGHT_ANSWER_SYMBOL  = '+'.freeze
+    WRONG_ANSWER_SYMBOL  = '-'.freeze
+    NOTHING_SYMBOL       = ''.freeze
+    GUESS_IS_NOT_INTEGER = 'Guess should be Integer class'.freeze
+    DIGITS_COUNT_ERROR   = 'Invalid digits count'.freeze
+    DIGIT_RANGE_ERROR    = 'Digit is not in a range'.freeze
 
     def initialize(code, input)
       @secret_code = code.to_s.split(NOTHING_SYMBOL).map(&:to_i)
@@ -14,9 +17,11 @@ module Codebreaker
     end
 
     def self.validate(guess)
-      raise GuessIsNotInteger unless guess[/^\d+$/]
-      raise DigitsCountError unless guess.size == Game::DIGITS_NUM
-      raise DigitRangeError unless guess.chars.all? { |num| num.to_i.between? Game::MIN_CODE_NUM, Game::MAX_CODE_NUM }
+      raise ValidationError, GUESS_IS_NOT_INTEGER unless guess[/^\d+$/]
+      raise ValidationError, DIGITS_COUNT_ERROR   unless guess.size == Game::DIGITS_NUM
+      raise ValidationError, DIGIT_RANGE_ERROR    unless guess.chars.all? do |num|
+                                                           num.to_i.between? Game::MIN_CODE_NUM, Game::MAX_CODE_NUM
+                                                         end
     end
 
     private

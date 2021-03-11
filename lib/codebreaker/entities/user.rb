@@ -9,12 +9,11 @@ module Codebreaker
       @errors = []
     end
 
-    private
-
-    def validate!
-      validate_name_class
-      validate_name_min_length if @errors.empty?
-      validate_name_max_length if @errors.empty?
+    def valid?
+      validate_name_class(@name, @errors)
+      validate_name_min_length(@name, @errors) if @errors.empty?
+      validate_name_max_length(@name, @errors) if @errors.empty?
+      @errors.empty?
     end
   end
 end

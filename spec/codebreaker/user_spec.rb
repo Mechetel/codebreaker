@@ -47,7 +47,7 @@ RSpec.describe Codebreaker::User do
 
       it 'adds ShortNameError to errors' do
         short_name_user.valid?
-        expect(short_name_user.errors).to include Codebreaker::ShortNameError
+        expect(short_name_user.errors).to include Codebreaker::ValidationError
       end
     end
 
@@ -61,7 +61,7 @@ RSpec.describe Codebreaker::User do
 
       it 'adds longnameerror to errors' do
         long_name_user.valid?
-        expect(long_name_user.errors).to include Codebreaker::LongNameError
+        expect(long_name_user.errors).to include Codebreaker::ValidationError
       end
     end
 
@@ -75,7 +75,7 @@ RSpec.describe Codebreaker::User do
 
       it 'adds NameIsNotStringError to errors' do
         invalid_user.valid?
-        expect(invalid_user.errors).to include Codebreaker::NameIsNotStringError
+        expect(invalid_user.errors).to include Codebreaker::ValidationError
       end
     end
   end

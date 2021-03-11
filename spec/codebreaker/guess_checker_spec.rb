@@ -29,15 +29,15 @@ RSpec.describe Codebreaker::GuessChecker do
 
   describe '#validate' do
     it 'raises DigitsCountError when digits count is invalid' do
-      expect { described_class.validate('102') }.to raise_error Codebreaker::DigitsCountError
+      expect { described_class.validate('102') }.to raise_error Codebreaker::ValidationError
     end
 
     it 'raises DigitsCountError when guess is not a numbers' do
-      expect { described_class.validate('sdfg') }.to raise_error Codebreaker::GuessIsNotInteger
+      expect { described_class.validate('sdfg') }.to raise_error Codebreaker::ValidationError
     end
 
     it 'raises DigitRangeError when any digit is not in the range' do
-      expect { described_class.validate('6969') }.to raise_error Codebreaker::DigitRangeError
+      expect { described_class.validate('6969') }.to raise_error Codebreaker::ValidationError
     end
   end
 

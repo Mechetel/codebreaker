@@ -21,10 +21,9 @@ module Codebreaker
       DIFFICULTIES[@level][:hints]
     end
 
-    private
-
-    def validate!
-      validate_difficulty
+    def valid?
+      validate_difficulty(@level, @errors)
+      @errors.empty?
     end
   end
 end

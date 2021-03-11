@@ -47,7 +47,7 @@ RSpec.describe Codebreaker::Difficulty do
 
       it 'adds DifficultyError to errors' do
         invalid_difficulty.valid?
-        expect(invalid_difficulty.errors).to include Codebreaker::DifficultyError
+        expect(invalid_difficulty.errors).to include Codebreaker::ValidationError
       end
     end
 
