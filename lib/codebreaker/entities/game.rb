@@ -4,7 +4,7 @@ module Codebreaker
     MAX_CODE_NUM = 6
     DIGITS_NUM = 4
 
-    attr_reader :user, :difficulty, :secret_code, :errors, :date, :hints_list, :attempts, :hints
+    attr_reader :user, :difficulty, :secret_code, :date, :hints_list, :attempts, :hints
 
     def initialize(user, difficulty)
       @user = user

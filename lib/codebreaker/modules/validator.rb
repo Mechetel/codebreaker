@@ -2,7 +2,7 @@ module Codebreaker
   module Validator
     def valid?
       validate!
-      @errors.empty?
+      errors.empty?
     end
   end
 end
