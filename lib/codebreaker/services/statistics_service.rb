@@ -15,7 +15,7 @@ module Codebreaker
     end
 
     def sort_statistics
-      load.sort_by { |user| [user[:difficulty], user[:attempts_used], user[:hints_used]] }
+      load.sort_by { |user| [-user[:attempts_total], user[:attempts_used], user[:hints_used]] }
     end
 
     def load
