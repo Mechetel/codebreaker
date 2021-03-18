@@ -26,13 +26,6 @@ module Codebreaker
       GuessChecker.new(@secret_code.join, guess).check
     end
 
-    def new_game
-      @secret_code = generate_secret_code
-      @hints_list = @secret_code.clone
-      @attempts = @difficulty.attempts.clone
-      @hints = @difficulty.hints.clone
-    end
-
     def lose?
       @attempts.zero?
     end

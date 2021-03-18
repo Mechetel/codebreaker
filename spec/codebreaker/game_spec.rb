@@ -113,32 +113,6 @@ RSpec.describe Codebreaker::Game do
     end
   end
 
-  describe '#new_game' do
-    subject(:hints_at_new_game) { game.difficulty.hints }
-
-    let(:attempts_at_new_game) { game.difficulty.attempts }
-
-    before do
-      game.new_game
-    end
-
-    it 'set secret code Array to secret_code' do
-      expect(game.secret_code.class).to eq Array
-    end
-
-    it 'set secret code to hints_list' do
-      expect(game.hints_list).to eq game.secret_code
-    end
-
-    it 'current_attempts are equal to previous game current_attempts' do
-      expect(game.attempts).to eq attempts_at_new_game
-    end
-
-    it 'current_hints are equal to previous game current_hints' do
-      expect(game.hints).to eq hints_at_new_game
-    end
-  end
-
   describe '#check_attempt' do
     it 'returns String' do
       expect(game.check_attempt('2456').class).to eq String
