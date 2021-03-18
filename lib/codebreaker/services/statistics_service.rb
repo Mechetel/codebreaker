@@ -19,9 +19,7 @@ module Codebreaker
     end
 
     def load
-      if File.exist?(@path) && !File.zero?(@path)
-        YAML.load_file(@path)
-      end
+      YAML.load_file(@path) if File.exist?(@path) && !File.zero?(@path)
     end
 
     private

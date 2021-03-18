@@ -14,11 +14,11 @@ RSpec.describe Codebreaker::GuessChecker do
 
   describe 'check GuessChecker constants' do
     it 'check content of RIGHT_ANSWER_SYMBOL constant' do
-      expect(described_class::RIGHT_ANSWER_SYMBOL).to eq(plus_symbol)
+      expect(described_class::RIGHT_ANSWER_SYMBOL).to eq plus_symbol
     end
 
     it 'check content of WRONG_ANSWER_SYMBOL constant' do
-      expect(described_class::WRONG_ANSWER_SYMBOL).to eq(minus_symbol)
+      expect(described_class::WRONG_ANSWER_SYMBOL).to eq minus_symbol
     end
   end
 

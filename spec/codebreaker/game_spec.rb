@@ -1,21 +1,19 @@
 require 'spec_helper'
 
 RSpec.describe Codebreaker::Game do
-  let(:user) { Codebreaker::User.new user_name }
+  let(:user) { Codebreaker::User.new(user_name) }
   let(:user_name) { 'Mechetel' }
-  let(:difficulty) { Codebreaker::Difficulty.new difficulty_level }
+  let(:difficulty) { Codebreaker::Difficulty.new(difficulty_level) }
   let(:difficulty_level) { 'hell' }
-  let(:game) { described_class.new user, difficulty }
+  let(:game) { described_class.new(user, difficulty) }
 
   describe '#initialize' do
     context 'when game starts it initializes with secret number' do
       subject(:game_secret_number) { game.secret_code }
 
-      let(:secret_number) { [6, 6, 1, 6] }
-
       it 'has secret number' do
-        allow_any_instance_of(described_class).to receive(:generate_secret_code).and_return(secret_number)
-        expect(game_secret_number).to eq(secret_number)
+        allow_any_instance_of(described_class).to receive(:generate_secret_code).and_return([6, 6, 1, 6])
+        expect(game_secret_number).to eq([6, 6, 1, 6])
       end
 
       it 'has valid secret number length' do

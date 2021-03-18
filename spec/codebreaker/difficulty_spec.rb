@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 RSpec.describe Codebreaker::Difficulty do
-  let(:difficulty) { described_class.new level }
+  let(:difficulty) { described_class.new(level) }
   let(:level) { 'easy' }
-  let(:invalid_difficulty) { described_class.new invalid_level }
+  let(:invalid_difficulty) { described_class.new(invalid_level) }
   let(:invalid_level) { 'qwerty' }
   let(:difficulty_constant) do
     { easy: { attempts: 15, hints: 2 },
