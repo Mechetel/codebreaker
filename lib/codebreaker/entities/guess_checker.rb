@@ -2,7 +2,6 @@ module Codebreaker
   class GuessChecker
     RIGHT_ANSWER_SYMBOL  = '+'.freeze
     WRONG_ANSWER_SYMBOL  = '-'.freeze
-    NOTHING_SYMBOL       = ''.freeze
     GUESS_IS_NOT_INTEGER = 'Guess should be Integer class'.freeze
     DIGITS_COUNT_ERROR   = 'Invalid digits count'.freeze
     DIGIT_RANGE_ERROR    = 'Digit is not in a range'.freeze

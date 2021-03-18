@@ -3,7 +3,6 @@ require 'spec_helper'
 RSpec.describe Codebreaker::GuessChecker do
   let(:plus_symbol) { '+' }
   let(:minus_symbol) { '-' }
-  let(:nothing_symbol) { '' }
 
   describe '#initialize' do
     let(:guess_checker) { described_class.new('1234', '2345') }
@@ -20,10 +19,6 @@ RSpec.describe Codebreaker::GuessChecker do
 
     it 'check content of WRONG_ANSWER_SYMBOL constant' do
       expect(described_class::WRONG_ANSWER_SYMBOL).to eq(minus_symbol)
-    end
-
-    it 'check content of NOTHING_SYMBOL constant' do
-      expect(described_class::NOTHING_SYMBOL).to eq(nothing_symbol)
     end
   end
 
