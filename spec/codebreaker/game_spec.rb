@@ -11,7 +11,7 @@ RSpec.describe Codebreaker::Game do
     context 'when game starts it initializes with secret number' do
       subject(:game_secret_number) { game.secret_code }
 
-      let(:secret_number) { '6616' }
+      let(:secret_number) { [6, 6, 1, 6] }
 
       it 'has secret number' do
         allow_any_instance_of(described_class).to receive(:generate_secret_code).and_return(secret_number)
@@ -43,7 +43,7 @@ RSpec.describe Codebreaker::Game do
       end
 
       it 'hints list is equal to secret code' do
-        expect(game.hints_list).to eq game_secret_number
+        expect(game.hints_list).not_to eq game_secret_number
       end
     end
   end

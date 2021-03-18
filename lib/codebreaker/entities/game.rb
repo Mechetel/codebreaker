@@ -12,16 +12,13 @@ module Codebreaker
       @attempts = @difficulty.attempts
       @hints = @difficulty.hints
       @secret_code = generate_secret_code
-      @hints_list = secret_code.clone
+      @hints_list = @secret_code.shuffle
       @date = Time.now.getlocal
     end
 
     def use_hint
       @hints -= 1
-      index = rand(@hints_list.size)
-      digit = hints_list[index]
-      @hints_list.delete_at index
-      digit
+      @hints_list.pop
     end
 
     def check_attempt(guess)
