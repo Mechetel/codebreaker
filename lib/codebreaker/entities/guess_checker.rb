@@ -8,8 +8,8 @@ module Codebreaker
     DIGIT_RANGE_ERROR    = 'Digit is not in a range'.freeze
 
     def initialize(code, input)
-      @secret_code = code.to_s.split(NOTHING_SYMBOL).map(&:to_i)
-      @user_input = input.to_s.split(NOTHING_SYMBOL).map(&:to_i)
+      @secret_code = code.to_s.chars.map(&:to_i)
+      @user_input = input.to_s.chars.map(&:to_i)
     end
 
     def check
