@@ -19,10 +19,16 @@ module Codebreaker
     end
 
     def load
+      make_files(@path)
       YAML.load_file(@path) if File.exist?(@path) && !File.zero?(@path)
     end
 
     private
+
+    def make_files(file_path)
+      Dir.mkdir('db') unless Dir.exist?('db')
+      File.new(file_path, 'w') unless File.exist?(file_path)
+    end
 
     def game_to_h(game)
       {
