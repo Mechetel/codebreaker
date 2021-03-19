@@ -31,13 +31,14 @@ module Codebreaker
     end
 
     def game_to_h(game)
+      game_difficulty = game.difficulty
       {
         name: game.user.name,
-        difficulty: game.difficulty.level.to_s,
-        attempts_total: game.difficulty.attempts,
-        attempts_used: game.difficulty.attempts - game.attempts,
-        hints_total: game.difficulty.hints,
-        hints_used: game.difficulty.hints - game.hints,
+        difficulty: game_difficulty.level.to_s,
+        attempts_total: game_difficulty.attempts,
+        attempts_used: game_difficulty.attempts - game.attempts,
+        hints_total: game_difficulty.hints,
+        hints_used: game_difficulty.hints - game.hints,
         date: game.date
       }
     end
