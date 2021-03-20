@@ -7,7 +7,7 @@ module Codebreaker
 
     def initialize(code, input)
       @secret_code = code.to_s.chars.map(&:to_i)
-      @user_input = input.to_s.chars.map(&:to_i)
+      @user_input = input.chars.map(&:to_i)
     end
 
     def check

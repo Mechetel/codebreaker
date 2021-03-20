@@ -23,7 +23,7 @@ module Codebreaker
 
     def check_attempt(guess)
       @attempts -= 1
-      GuessChecker.new(@secret_code.join, guess).check
+      GuessChecker.new(@secret_code, guess).check
     end
 
     def lose?
