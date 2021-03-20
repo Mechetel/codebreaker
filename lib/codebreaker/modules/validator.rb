@@ -29,8 +29,9 @@ module Codebreaker
 
     def validate_guess_range(guess)
       raise ValidationError, I18n.t('digit_range_error') unless guess.chars.all? do |num|
-                                                          num.to_i.between? Game::MIN_CODE_NUM, Game::MAX_CODE_NUM
-                                                         end
+                                                                  num.to_i.between? Game::MIN_CODE_NUM,
+                                                                                    Game::MAX_CODE_NUM
+                                                                end
     end
   end
 end

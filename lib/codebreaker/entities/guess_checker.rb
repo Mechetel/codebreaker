@@ -25,9 +25,7 @@ module Codebreaker
     def pluses
       answer = ''
       @user_input.map.with_index do |number, index|
-        if @secret_code[index] == number
-          pluses_helper(answer, index)
-        end
+        pluses_helper(answer, index) if @secret_code[index] == number
       end
       answer
     end
