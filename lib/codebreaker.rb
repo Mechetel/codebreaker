@@ -2,6 +2,10 @@ require_relative 'codebreaker/version'
 
 require 'yaml'
 require 'pry'
+require 'i18n'
+
+I18n.load_path << Dir["#{File.expand_path('locales')}/*.yml"]
+I18n.default_locale = :en
 
 require_relative 'codebreaker/errors/validation_error'
 

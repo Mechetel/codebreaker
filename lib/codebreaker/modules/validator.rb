@@ -3,25 +3,34 @@ module Codebreaker
     NAME_MIN_LENGTH = 3
     NAME_MAX_LENGTH = 20
 
-    DIFFICULTY_ERROR = 'No such difficulty'.freeze
-    NAME_IS_NOT_STRING_ERROR = 'Name should be an instance of String'.freeze
-    SHORT_NAME_ERROR = 'Name is too short'.freeze
-    LONG_NAME_ERROR = 'Name is too long'.freeze
-
     def validate_difficulty(level, errors)
-      errors << ValidationError.new(DIFFICULTY_ERROR) unless Difficulty::DIFFICULTIES.include? level
+      errors << ValidationError.new(I18n.t('difficulty_error')) unless Difficulty::DIFFICULTIES.include? level
     end
 
     def validate_name_class(name, errors)
-      errors << ValidationError.new(NAME_IS_NOT_STRING_ERROR) unless name.is_a? String
+      errors << ValidationError.new(I18n.t('name_is_not_string_error')) unless name.is_a? String
     end
 
     def validate_name_min_length(name, errors)
-      errors << ValidationError.new(SHORT_NAME_ERROR) if name.length < NAME_MIN_LENGTH
+      errors << ValidationError.new(I18n.t('short_name_error')) if name.length < NAME_MIN_LENGTH
     end
 
     def validate_name_max_length(name, errors)
-      errors << ValidationError.new(LONG_NAME_ERROR) if name.length > NAME_MAX_LENGTH
+      errors << ValidationError.new(I18n.t('long_name_error')) if name.length > NAME_MAX_LENGTH
+    end
+
+    def validate_guess_for_not_integer(guess)
+      raise ValidationError, I18n.t('guess_is_not_integer') unless guess[/^\d+$/]
+    end
+
+    def validate_guess_count(guess)
+      raise ValidationError, I18n.t('digits_count_error') unless guess.size == Game::DIGITS_NUM
+    end
+
+    def validate_guess_range(guess)
+      raise ValidationError, I18n.t('digit_range_error') unless guess.chars.all? do |num|
+                                                          num.to_i.between? Game::MIN_CODE_NUM, Game::MAX_CODE_NUM
+                                                         end
     end
   end
 end

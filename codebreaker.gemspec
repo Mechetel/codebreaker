@@ -28,6 +28,7 @@ Gem::Specification.new do |spec|
   # spec.add_dependency "example-gem", "~> 1.0"
 
   spec.add_development_dependency 'pry-byebug'
+  spec.add_development_dependency 'i18n'
   spec.add_development_dependency 'rake'
   spec.add_development_dependency 'fasterer'
   spec.add_development_dependency 'rspec'
