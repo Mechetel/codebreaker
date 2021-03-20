@@ -5,11 +5,7 @@ RSpec.describe Codebreaker::Difficulty do
   let(:level) { 'easy' }
   let(:invalid_difficulty) { described_class.new(invalid_level) }
   let(:invalid_level) { 'qwerty' }
-  let(:difficulty_constant) do
-    { easy: { attempts: 15, hints: 2 },
-      medium: { attempts: 10, hints: 1 },
-      hell: { attempts: 5, hints: 1 } }
-  end
+  let(:difficulty_constant) { Difficulty::DIFFICULTIES }
 
   describe '#level' do
     context 'when level set' do
@@ -30,12 +26,6 @@ RSpec.describe Codebreaker::Difficulty do
   describe '#initialize' do
     it 'has level and errors field' do
       expect(difficulty.instance_variables).to include(:@level, :@errors)
-    end
-  end
-
-  describe 'check Difficulty constants' do
-    it 'check content of DIFFICULTIES constant' do
-      expect(described_class::DIFFICULTIES).to eq(difficulty_constant)
     end
   end
 

@@ -31,12 +31,10 @@ module Codebreaker
     end
 
     def minuses
-      answer = ''
       @user_input.compact!
       @secret_code.compact!
       near_matchers = @secret_code & @user_input
-      near_matchers.size.times { answer << WRONG_ANSWER_SYMBOL }
-      answer
+      Array.new(near_matchers.size) { '-' }.join
     end
 
     def pluses_helper(answer, index)

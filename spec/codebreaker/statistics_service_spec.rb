@@ -1,6 +1,6 @@
 RSpec.describe Codebreaker::StatisticsService do
   let(:game) { Codebreaker::Game.new(Codebreaker::User.new('Mechetel'), Codebreaker::Difficulty.new('hell')) }
-  let(:path) { './lib/codebreaker/test.yaml' }
+  let(:path) { './lib/codebreaker/.yaml' }
   let(:service) { described_class.new(path) }
 
   before { service.store game }

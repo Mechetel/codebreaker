@@ -1,24 +1,11 @@
 require 'spec_helper'
 
 RSpec.describe Codebreaker::GuessChecker do
-  let(:plus_symbol) { '+' }
-  let(:minus_symbol) { '-' }
-
   describe '#initialize' do
     let(:guess_checker) { described_class.new('1234', '2345') }
 
     it 'has secret_code and user_input field' do
       expect(guess_checker.instance_variables).to include(:@secret_code, :@user_input)
-    end
-  end
-
-  describe 'check GuessChecker constants' do
-    it 'check content of RIGHT_ANSWER_SYMBOL constant' do
-      expect(described_class::RIGHT_ANSWER_SYMBOL).to eq plus_symbol
-    end
-
-    it 'check content of WRONG_ANSWER_SYMBOL constant' do
-      expect(described_class::WRONG_ANSWER_SYMBOL).to eq minus_symbol
     end
   end
 
