@@ -52,7 +52,7 @@ RSpec.describe Codebreaker::GuessChecker do
         { secret_number: '1234', input: '1234', result: '++++' }
       ].each do |line|
         it "returns #{line[:result]} when secret number - #{line[:secret_number]} and input - #{line[:input]}" do
-          expect(described_class.new(line[:secret_number], line[:input]).check).to eq(line[:result])
+          expect(described_class.new(line[:secret_number].chars.map(&:to_i), line[:input]).check).to eq(line[:result])
         end
       end
     end

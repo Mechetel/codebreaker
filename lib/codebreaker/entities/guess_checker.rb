@@ -6,7 +6,7 @@ module Codebreaker
     WRONG_ANSWER_SYMBOL  = '-'.freeze
 
     def initialize(code, input)
-      @secret_code = code.to_s.chars.map(&:to_i)
+      @secret_code = code
       @user_input = input.chars.map(&:to_i)
     end
 
