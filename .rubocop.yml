@@ -12,18 +12,6 @@ Metrics/BlockLength:
   Exclude:
     - 'spec/codebreaker/**/*'
 
-Metrics/ModuleLength:
-  Exclude:
-    - 'spec/codebreaker/**/*'
-
-Lint/AmbiguousBlockAssociation:
-  Exclude:
-    - 'spec/codebreaker/**/*'
-
-RSpec/AnyInstance:
-  Exclude:
-    - 'spec/codebreaker/**/*'
-
 Style/FrozenStringLiteralComment:
   Enabled: false
 

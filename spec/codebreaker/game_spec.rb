@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe Codebreaker::Game do
   let(:user) { Codebreaker::User.new(user_name) }
   let(:user_name) { 'Mechetel' }
@@ -11,9 +9,8 @@ RSpec.describe Codebreaker::Game do
     context 'when game starts it initializes with secret number' do
       subject(:game_secret_number) { game.secret_code }
 
-      it 'has secret number' do
-        allow_any_instance_of(described_class).to receive(:generate_secret_code).and_return([6, 6, 1, 6])
-        expect(game_secret_number).to eq([6, 6, 1, 6])
+      before do
+        allow(game).to receive(:generate_secret_code)
       end
 
       it 'has valid secret number length' do

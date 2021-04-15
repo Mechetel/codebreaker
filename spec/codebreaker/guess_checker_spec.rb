@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe Codebreaker::GuessChecker do
   describe '#initialize' do
     let(:guess_checker) { described_class.new('1234', '2345') }

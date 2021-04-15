@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe Codebreaker::Difficulty do
   let(:difficulty) { described_class.new(level) }
   let(:level) { 'easy' }
@@ -31,23 +29,33 @@ RSpec.describe Codebreaker::Difficulty do
 
   describe '#valid?' do
     context 'when entered level of difficulty is wrong' do
+      subject(:invalid_difficulty_valid?) { invalid_difficulty.valid? }
+
+      before do
+        invalid_difficulty_valid?
+      end
+
       it 'validation returns false' do
-        expect(invalid_difficulty.valid?).to eq false
+        expect(invalid_difficulty_valid?).to eq false
       end
 
       it 'adds DifficultyError to errors' do
-        invalid_difficulty.valid?
         expect(invalid_difficulty.errors).to include Codebreaker::ValidationError
       end
     end
 
     context 'when entered level of difficulty is right' do
+      subject(:valid_difficulty_valid?) { difficulty.valid? }
+
+      before do
+        valid_difficulty_valid?
+      end
+
       it 'validation returns true' do
-        expect(difficulty.valid?).to eq true
+        expect(valid_difficulty_valid?).to eq true
       end
 
       it 'adds nothing to errors' do
-        difficulty.valid?
         expect(difficulty.errors).to be_empty
       end
 
