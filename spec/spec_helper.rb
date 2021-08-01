@@ -1,11 +1,13 @@
 require 'simplecov'
+require 'bundler/setup'
+require 'codebreaker'
+
 SimpleCov.start do
   enable_coverage :branch
   add_filter 'spec/'
 end
+
 SimpleCov.minimum_coverage 95
-require 'bundler/setup'
-require 'codebreaker'
 
 RSpec.configure do |config|
   config.example_status_persistence_file_path = '.rspec_status'

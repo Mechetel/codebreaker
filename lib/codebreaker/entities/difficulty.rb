@@ -26,4 +26,4 @@ module Codebreaker
       @errors.empty?
     end
   end
-end
+e
