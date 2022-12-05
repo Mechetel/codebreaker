@@ -1,0 +1,8 @@
+en:
+  guess_is_not_integer: 'Guess should be Integer class'
+  digits_count_error: 'Invalid digits count'
+  digit_range_error: 'Digit is not in a range'
+  difficulty_error: 'No such difficulty'
+  name_is_not_string_error: 'Name should be an instance of String'
+  short_name_error: 'Name is too short'
+  long_name_error: 'Name is too long'
