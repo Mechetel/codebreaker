@@ -3,7 +3,7 @@ RSpec.describe Codebreaker::Game do
   let(:user_name) { 'Mechetel' }
   let(:difficulty) { Codebreaker::Difficulty.new(difficulty_level) }
   let(:difficulty_level) { 'hell' }
-  let(:game) { Game.new(user, difficulty) }
+  let(:game) { described_class.new(user, difficulty) }
 
   describe '#initialize' do
     context 'when game starts it initializes with secret number' do
@@ -28,12 +28,12 @@ RSpec.describe Codebreaker::Game do
       end
 
       it 'secret code size equal to DIGITS_NUM constant' do
-        expect(game_secret_number.size).to eq Game::DIGITS_NUM
+        expect(game_secret_number.size).to eq described_class::DIGITS_NUM
       end
 
       it 'each element of secret code is between MIN_CODE_NUM and MAX_CODE_NUM contstants' do
         game_secret_number.each do |digit|
-          expect(digit.to_i).to be_between(Game::MIN_CODE_NUM, Game::MAX_CODE_NUM).inclusive
+          expect(digit.to_i).to be_between(described_class::MIN_CODE_NUM, described_class::MAX_CODE_NUM).inclusive
         end
       end
 

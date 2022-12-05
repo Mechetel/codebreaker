@@ -1,7 +1,7 @@
 RSpec.describe Codebreaker::Difficulty do
-  let(:difficulty) { Difficulty.new(level) }
+  let(:difficulty) { described_class.new(level) }
   let(:level) { 'easy' }
-  let(:invalid_difficulty) { Difficulty.new(invalid_level) }
+  let(:invalid_difficulty) { described_class.new(invalid_level) }
   let(:invalid_level) { 'qwerty' }
   let(:difficulty_constant) { Difficulty::DIFFICULTIES }
 

@@ -1,5 +1,5 @@
 RSpec.describe Codebreaker::User do
-  let(:user) { User.new name }
+  let(:user) { described_class.new name }
   let(:name) { 'Mechetel' }
 
   describe '#name' do
@@ -26,11 +26,11 @@ RSpec.describe Codebreaker::User do
 
   describe 'check User constants' do
     it 'check content of NAME_MIN_LENGTH constant' do
-      expect(User::NAME_MIN_LENGTH).to eq(3)
+      expect(described_class::NAME_MIN_LENGTH).to eq(3)
     end
 
     it 'check content of NAME_MAX_LENGTH constant' do
-      expect(User::NAME_MAX_LENGTH).to eq(20)
+      expect(described_class::NAME_MAX_LENGTH).to eq(20)
     end
   end
 
@@ -38,7 +38,7 @@ RSpec.describe Codebreaker::User do
     context 'when entered name is too short' do
       subject(:invalid_user_valid?) { short_name_user.valid? }
 
-      let(:short_name_user) { User.new short_name }
+      let(:short_name_user) { described_class.new short_name }
       let(:short_name) { 'Me' }
 
       before do
@@ -57,7 +57,7 @@ RSpec.describe Codebreaker::User do
     context 'when entered name is too long' do
       subject(:long_name_user_valid?) { long_name_user.valid? }
 
-      let(:long_name_user) { User.new long_name }
+      let(:long_name_user) { described_class.new long_name }
       let(:long_name) { 'dima' * 10 }
 
       before do
@@ -76,7 +76,7 @@ RSpec.describe Codebreaker::User do
     context 'when entered name is not an instance of String' do
       subject(:invalid_user_valid?) { invalid_user.valid? }
 
-      let(:invalid_user) { User.new inappropriate_user_name }
+      let(:invalid_user) { described_class.new inappropriate_user_name }
       let(:inappropriate_user_name) { 322 }
 
       before do
