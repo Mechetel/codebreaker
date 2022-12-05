@@ -39,9 +39,9 @@ commands:
           name: run specs
           command: |
             mkdir /tmp/test-results
-            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
+            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split)"
             bundle exec rspec --format progress \
-                              --out /tmp/rspec.xml \
+                              --out /tmp/test-results/rspec.xml \
                               $TEST_FILES
       - store_artifacts:
           path: ~/repo/coverage
