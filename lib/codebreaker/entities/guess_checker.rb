@@ -2,8 +2,8 @@ module Codebreaker
   class GuessChecker
     extend Validator
 
-    RIGHT_ANSWER_SYMBOL  = '+'.freeze
-    WRONG_ANSWER_SYMBOL  = '-'.freeze
+    RIGHT_ANSWER_SYMBOL = '+'.freeze
+    WRONG_ANSWER_SYMBOL = '-'.freeze
 
     def initialize(code, input)
       @secret_code = code

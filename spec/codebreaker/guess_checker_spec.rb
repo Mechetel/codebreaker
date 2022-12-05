@@ -1,6 +1,6 @@
 RSpec.describe Codebreaker::GuessChecker do
   describe '#initialize' do
-    let(:guess_checker) { described_class.new('1234', '2345') }
+    let(:guess_checker) { GuessChecker.new('1234', '2345') }
 
     it 'has secret_code and user_input field' do
       expect(guess_checker.instance_variables).to include(:@secret_code, :@user_input)
@@ -9,15 +9,15 @@ RSpec.describe Codebreaker::GuessChecker do
 
   describe '#validate' do
     it 'raises DigitsCountError when digits count is invalid' do
-      expect { described_class.validate('102') }.to raise_error Codebreaker::ValidationError
+      expect { GuessChecker.validate('102') }.to raise_error Codebreaker::ValidationError
     end
 
     it 'raises DigitsCountError when guess is not a numbers' do
-      expect { described_class.validate('sdfg') }.to raise_error Codebreaker::ValidationError
+      expect { GuessChecker.validate('sdfg') }.to raise_error Codebreaker::ValidationError
     end
 
     it 'raises DigitRangeError when any digit is not in the range' do
-      expect { described_class.validate('6969') }.to raise_error Codebreaker::ValidationError
+      expect { GuessChecker.validate('6969') }.to raise_error Codebreaker::ValidationError
     end
   end
 
@@ -37,7 +37,7 @@ RSpec.describe Codebreaker::GuessChecker do
         { secret_number: '1234', input: '1234', result: '++++' }
       ].each do |line|
         it "returns #{line[:result]} when secret number - #{line[:secret_number]} and input - #{line[:input]}" do
-          expect(described_class.new(line[:secret_number].chars.map(&:to_i), line[:input]).check).to eq(line[:result])
+          expect(GuessChecker.new(line[:secret_number].chars.map(&:to_i), line[:input]).check).to eq(line[:result])
         end
       end
     end
